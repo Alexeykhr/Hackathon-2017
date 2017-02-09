@@ -23,7 +23,7 @@ class VK extends Web
      */
     private $_version = null;
 
-    const VK_METHOD = 'https://api.vk.com/method/';
+    const VK_URL = 'https://api.vk.com/method/';
 
     /**
      * Constructor.
@@ -61,7 +61,7 @@ class VK extends Web
      */
     public function getUploadServer()
     {
-        return $this->curl(self::VK_METHOD . 'photos.getWallUploadServer?group_id='.$this->_groupID.'&v=5.62&access_token=' . $this->_token);
+        return $this->curl(self::VK_URL . 'photos.getWallUploadServer?group_id='.$this->_groupID.'&v=5.62&access_token=' . $this->_token);
     }
 
     /*
@@ -70,15 +70,38 @@ class VK extends Web
     public function photoSaveOnServer()
     {
         $photoInfo = $this->uploadImageOnServer();
-        return $this->curl(self::VK_METHOD . 'photos.saveWallPhoto?group_id=' . $this->_groupID . '&server=' . $photoInfo->server . '&photo=' . stripslashes($photoInfo->photo) . '&hash=' . $photoInfo->hash . '&v=' . $this->_version . '&access_token=' . $this->_token);
+        return $this->curl(self::VK_URL . 'photos.saveWallPhoto?group_id=' . $this->_groupID . '&server=' . $photoInfo->server . '&photo=' . stripslashes($photoInfo->photo) . '&hash=' . $photoInfo->hash . '&v=' . $this->_version . '&access_token=' . $this->_token);
     }
 
-    /*
-     * Post image on group wall.
+    /**
+     * Post on group VK.
+     *
+     * @param string $message
+     * @param string $attachments
+     * @return object
      */
-    public function postOnWall()
+    public function postOnWall($message, $attachments = '')
     {
-        $photoInfo = $this->photoSaveOnServer();
-        return $this->curl(self::VK_METHOD . 'wall.post?owner_id=-' . $this->_groupID . '&message=vk_api&attachments=photo' . $photoInfo->response[0]->owner_id . '_' . $photoInfo->response[0]->id . '&v=' . $this->_version . '&access_token=' . $this->_token);
+        return $this->sendVK('wall.post', [
+            'owner_id'    => '-' . $this->_groupID,
+            'message'     => $message,
+            'attachments' => $attachments,
+        ]);
+     }
+
+    /**
+     * Post request.
+     *
+     * @param string $method
+     * @param array $params
+     * @param string $http
+     * @param array $fields
+     */
+    public function sendVK($method, $params, $http = 'GET', $fields = [])
+    {
+        $url = self::VK_URL . $method . '?' . http_build_query($params)
+            . '&v=' . $this->_version . '&access_token=' . $this->_token;
+
+        $this->curl($url, $http, $fields);
     }
 }

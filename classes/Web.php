@@ -26,16 +26,4 @@ class Web
 
         return $result;
     }
-
-    /**
-     * Collect request.
-     *
-     * @param $arr
-     */
-    public function sendRequest($arr)
-    {
-        $keys = array_keys($arr);
-        $values = array_values($arr);
-        die;
-    }
 }

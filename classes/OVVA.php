@@ -2,7 +2,7 @@
 
 class OVVA extends Web
 {
-    const OVVA_METHOD = 'https://api.ovva.tv/v2/ua/tvguide/';
+    const OVVA_URL = 'https://api.ovva.tv/v2/ua/tvguide/';
 
     /**
      * Get schedule from OVVA api
@@ -12,6 +12,6 @@ class OVVA extends Web
      */
     public function getTVProgramme($canal)
     {
-        return $this->curl(self::OVVA_METHOD . $canal);
+        return $this->curl(self::OVVA_URL . $canal);
     }
 }
