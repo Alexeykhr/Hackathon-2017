@@ -39,7 +39,7 @@ class VK extends Web
         return $this->curl(
             $this->photosGetWallUploadServer()->response->upload_url,
             'POST',
-            ['photo' => curl_file_create( realpath(__DIR__ . '/../img/' . $photo ) )]
+            ['photo' => curl_file_create( realpath( __DIR__ . '/../img/' . $photo ) )]
         );
     }
 
