@@ -2,7 +2,7 @@
 
 class OVVA extends Web
 {
-    const OVVA_METHOD = 'https://api.ovva.tv/v2/ru/tvguide/';
+    const OVVA_METHOD = 'https://api.ovva.tv/v2/ua/tvguide/';
 
     /**
      * Get schedule from OVVA api

@@ -3,21 +3,21 @@
 class VK extends Web
 {
     /**
-     * Token from VK
+     * Token from VK.
      *
      * @var string $_token
      */
     private $_token = '';
 
     /**
-     * ID group from VK
+     * ID group from VK.
      *
      * @var int $_groupID
      */
     private $_groupID = null;
 
     /**
-     * Version API VK
+     * Version API VK.
      *
      * @var int $_version
      */
@@ -40,11 +40,11 @@ class VK extends Web
     }
 
     /**
-     * Upload image on VK server
+     * Upload image on VK server.
      *
      * @return object
      */
-    public function uploadImage()
+    public function uploadImageOnServer()
     {
         $cFile = curl_file_create( realpath( 'img/schedule.png' ) );
         $fields = [ 'photo' => $cFile ];
@@ -57,7 +57,7 @@ class VK extends Web
     }
 
     /*
-     * Get upload link from vk api
+     * Get upload link from vk api.
      */
     public function getUploadServer()
     {
@@ -65,20 +65,20 @@ class VK extends Web
     }
 
     /*
-     * Save image on VK server
+     * Save image on VK server.
      */
-    public function photoSave()
+    public function photoSaveOnServer()
     {
-        $photoInfo = $this->uploadImage();
+        $photoInfo = $this->uploadImageOnServer();
         return $this->curl(self::VK_METHOD . 'photos.saveWallPhoto?group_id=' . $this->_groupID . '&server=' . $photoInfo->server . '&photo=' . stripslashes($photoInfo->photo) . '&hash=' . $photoInfo->hash . '&v=' . $this->_version . '&access_token=' . $this->_token);
     }
 
     /*
-     * Post image on group wall
+     * Post image on group wall.
      */
     public function postOnWall()
     {
-        $photoInfo = $this->photoSave();
+        $photoInfo = $this->photoSaveOnServer();
         return $this->curl(self::VK_METHOD . 'wall.post?owner_id=-' . $this->_groupID . '&message=vk_api&attachments=photo' . $photoInfo->response[0]->owner_id . '_' . $photoInfo->response[0]->id . '&v=' . $this->_version . '&access_token=' . $this->_token);
     }
 }

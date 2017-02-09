@@ -4,7 +4,12 @@ require_once __DIR__ . '/classes/Web.php';
 require_once __DIR__ . '/classes/VK.php';
 require_once __DIR__ . '/classes/OVVA.php';
 
-$vk = new VK('', 139842925, '5.60'); die;
+$vk = new VK('', 139842925, '5.60');
+$vk->sendRequest([
+    'test' => 123,
+    'test2' => 144,
+    'test4' => 245
+]);
 ?>
 
 <!DOCTYPE html>
