@@ -5,7 +5,9 @@ require_once __DIR__ . '/classes/VK.php';
 require_once __DIR__ . '/classes/OVVA.php';
 
 $vk = new VK('', 139842925, '5.62');
-$vk->wallPost('VK TEST_1');
+$photo = $vk->uploadImageOnServer('photo.jpg');
+$res = $vk->photosSaveWallPhoto($photo->server, $photo->photo, $photo->hash);
+$vk->wallPost('Test Photo', 'photo' . $res->response[0]->owner_id . '_' . $res->response[0]->id);
 
 die;
 ?>
