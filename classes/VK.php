@@ -46,11 +46,13 @@ class VK extends Web
      */
     public function uploadImageOnServer()
     {
-        $cFile = curl_file_create( realpath( 'img/schedule.png' ) );
-        $fields = [ 'photo' => $cFile ];
+        /* Temporary */
+        $fields = [];
+//        $cFile = curl_file_create( realpath( 'img/schedule.png' ) );
+//        $fields = [ 'photo' => $cFile ];
 
         return $this->curl(
-            $this->getUploadServer()->response->upload_url,
+            $this->photosGetWallUploadServer()->response->upload_url,
             'POST',
             $fields
         );
@@ -59,18 +61,29 @@ class VK extends Web
     /*
      * Get upload link from vk api.
      */
-    public function getUploadServer()
+    public function photosGetWallUploadServer()
     {
-        return $this->curl(self::VK_URL . 'photos.getWallUploadServer?group_id='.$this->_groupID.'&v=5.62&access_token=' . $this->_token);
+        return $this->request('photos.getWallUploadServer', [
+            'group_id' => $this->_groupID,
+        ]);
     }
 
-    /*
-     * Save image on VK server.
+    /**
+     * Save photos wall on VK server.
+     *
+     * @param string $server
+     * @param $photo
+     * @param $hash
+     * @return object
      */
-    public function photoSaveOnServer()
+    public function photosSaveWallPhoto($server, $photo, $hash)
     {
-        $photoInfo = $this->uploadImageOnServer();
-        return $this->curl(self::VK_URL . 'photos.saveWallPhoto?group_id=' . $this->_groupID . '&server=' . $photoInfo->server . '&photo=' . stripslashes($photoInfo->photo) . '&hash=' . $photoInfo->hash . '&v=' . $this->_version . '&access_token=' . $this->_token);
+        return $this->request('photos.saveWallPhoto', [
+            'group_id' => $this->_groupID,
+            'server'   => $server,
+            'photo'    => $photo,
+            'hash'     => $hash
+        ]);
     }
 
     /**
@@ -80,9 +93,9 @@ class VK extends Web
      * @param string $attachments
      * @return object
      */
-    public function postOnWall($message, $attachments = '')
+    public function wallPost($message, $attachments = '')
     {
-        return $this->sendVK('wall.post', [
+        return $this->request('wall.post', [
             'owner_id'    => '-' . $this->_groupID,
             'message'     => $message,
             'attachments' => $attachments,
@@ -97,7 +110,7 @@ class VK extends Web
      * @param string $http
      * @param array $fields
      */
-    public function sendVK($method, $params, $http = 'GET', $fields = [])
+    public function request($method, $params, $http = 'GET', $fields = [])
     {
         $url = self::VK_URL . $method . '?' . http_build_query($params)
             . '&v=' . $this->_version . '&access_token=' . $this->_token;

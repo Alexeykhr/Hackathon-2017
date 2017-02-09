@@ -5,7 +5,9 @@ require_once __DIR__ . '/classes/VK.php';
 require_once __DIR__ . '/classes/OVVA.php';
 
 $vk = new VK('', 139842925, '5.62');
-$vk->postOnWall('VK TEST_1'); die;
+$vk->wallPost('VK TEST_1');
+
+die;
 ?>
 
 <!DOCTYPE html>
