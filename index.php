@@ -1,10 +1,10 @@
 <?php
 
 require_once __DIR__ . '/classes/Web.php';
+require_once __DIR__ . '/classes/VK.php';
+require_once __DIR__ . '/classes/OVVA.php';
 
-$web = new Web();
-//$data = $web->getTVProgramme("1plus1");
-$web->vk();
+$vk = new VK('', 139842925, '5.60'); die;
 ?>
 
 <!DOCTYPE html>
