@@ -38,28 +38,35 @@ body {
     margin-bottom: 0;
 }
 
-.left-post {
+.post > div {
+    position: relative;
+    display: table-cell;
     width: 50%;
-    display: inline-block;
 }
 
-.post-photo {
-    font-size: 0 !important;
-}
-
-.post-photo img {
+.post_photo img {
     width: 100%;
 }
 
-.right-post {
-    width: 50%;
+.post_subtitle {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    border: 1px solid #929292;
+    background: rgba(0,0,0,.7);
+    color: #fff;
+    font-size: 13px;
+    padding: 2px 9px;
     display: inline-block;
+}
+
+.right_post {
     vertical-align: top;
     font-size: initial;
     padding: 0 10px;
 }
 
-.post-title {
+.post_title {
     position: relative;
     padding: 5px 2px;
     font-family: monospace, serif;
@@ -67,7 +74,7 @@ body {
     border-bottom: 1px solid #b1b1b1;
 }
 
-.post-title::after {
+.post_title::after {
     content: "";
     position: absolute;
     width: 7px;
@@ -83,4 +90,24 @@ body {
     -webkit-transform: rotate(135deg);
     -o-transform: rotate(135deg);
     transform: rotate(135deg);
+}
+
+.time_tv {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 0;
+    border-top: 1px solid #b1b1b1;
+    padding: 5px 0;
+}
+
+.time_tv > div {
+    display: inline-block;
+    width: 50%;
+    font-size: 18px;
+}
+
+.time_start {
+    border-right: 1px solid #b1b1b1;
 }

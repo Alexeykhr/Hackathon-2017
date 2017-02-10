@@ -23,16 +23,22 @@ $ovva = $ovva->getTVProgramme('1plus1');
     <div class="posts">
         <?php foreach ($ovva->data->programs as $program) : ?>
             <div class="post">
-                <div class="left-post post-photo">
+                <div class="left_post post_photo">
                     <img src="<?= $program->image->preview; ?>" alt="<?= $program->title; ?>">
+                    <?php if (!empty( $program->subtitle )) : ?>
+                        <div class="post_subtitle"><?= $program->subtitle; ?></div>
+                    <?php endif; ?>
                 </div>
-                <div class="right-post">
-                    <div class="post-title"><?= $program->title; ?></div>
+                <div class="right_post">
+                    <div class="post_title"><?= $program->title; ?></div>
+                    <div class="time_tv">
+                        <div class="time_start"><?= date('H:i', $program->realtime_begin); ?></div>
+                        <div class="time_end"><?= date('H:i', $program->realtime_end); ?></div>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
-
 
 </body>
 </html>
