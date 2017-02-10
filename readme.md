@@ -6,4 +6,8 @@
 2. ..
 
 <h2>Результат:</h2>
-![Result](img/photo.jpg)
+
+Вигляд сайту:
+![Result](img/screen.jpg)
+
+Вигляд групи в ВК:
