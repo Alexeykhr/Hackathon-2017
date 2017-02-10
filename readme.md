@@ -3,3 +3,5 @@
 
 <h2>Принцип дії</h2>
 1. ..
+
+![Result](img/photo.jpg)
