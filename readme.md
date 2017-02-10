@@ -8,6 +8,6 @@
 <h2>Результат:</h2>
 
 Вигляд сайту:
-![Result](img/screen.png)
+![Result](img/promo.png)
 
 Вигляд групи в ВК:
