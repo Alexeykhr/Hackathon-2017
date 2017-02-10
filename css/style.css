@@ -1,0 +1,86 @@
+body {
+    background: url(../img/10.png);
+}
+
+.title {
+    text-align: center;
+}
+
+.title h1 {
+    display: inline-block;
+    color: #3d454f;
+    border: 1px solid #dedede;
+    padding: 5px 20px;
+    font-size: 35px;
+    background: #fff;
+    box-shadow: 6px 6px 4px 0 #fff;
+}
+
+.posts {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.post {
+    position: relative;
+    display: block;
+    margin-bottom: 25px;
+    font-size: 0;
+    background: #fff;
+    border: 1px solid #dedede;
+    box-shadow: inset 0 0 0 1px #3c5163;
+}
+
+.post:last-child {
+    margin-bottom: 0;
+}
+
+.left-post {
+    width: 50%;
+    display: inline-block;
+}
+
+.post-photo {
+    font-size: 0 !important;
+}
+
+.post-photo img {
+    width: 100%;
+}
+
+.right-post {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    font-size: initial;
+    padding: 0 10px;
+}
+
+.post-title {
+    position: relative;
+    padding: 5px 2px;
+    font-family: monospace, serif;
+    font-size: 20px;
+    border-bottom: 1px solid #b1b1b1;
+}
+
+.post-title::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background: #000;
+    -ms-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+}

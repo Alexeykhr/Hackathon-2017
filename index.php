@@ -10,24 +10,29 @@ $ovva = $ovva->getTVProgramme('1plus1');
 <html>
 <head>
     <meta charset="utf-8">
+    <title>Hackathon-2017</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/material.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<div class="container">
-    <h1>Телепрограмма на <?= date('d.m.Y', strtotime($ovva->data->date)); ?></h1>
+    <div class="title">
+        <h1>Телепрограма на <?= date( 'd.m.Y', strtotime($ovva->data->date) ); ?></h1>
+    </div>
 
-    <div class="items">
+    <div class="posts">
         <?php foreach ($ovva->data->programs as $program) : ?>
-        <div class="item">
-            <img src="<?= $program->image->preview; ?>" alt="<?= $program->title; ?>">
-            <?= $program->title . ' ' . $program->subtitle; ?>
-            Початок: <?= date("H:i", $program->realtime_begin); ?>
-        </div>
+            <div class="post">
+                <div class="left-post post-photo">
+                    <img src="<?= $program->image->preview; ?>" alt="<?= $program->title; ?>">
+                </div>
+                <div class="right-post">
+                    <div class="post-title"><?= $program->title; ?></div>
+                </div>
+            </div>
         <?php endforeach; ?>
     </div>
 
-</div>
 
 </body>
 </html>
