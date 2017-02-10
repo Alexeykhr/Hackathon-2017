@@ -78,14 +78,17 @@ class VK extends Web
      *
      * @param string $message
      * @param string $attachments
+     * @param bool $from_group
      * @return object
      */
-    public function wallPost($message, $attachments = '')
+    public function wallPost($message, $attachments = '', $from_group = true)
     {
         return $this->request('wall.post', [
             'owner_id'    => '-' . $this->groupID,
             'message'     => $message,
             'attachments' => $attachments,
+            'from_group'  => $from_group,
+            'guid'        => rand()
         ]);
      }
 

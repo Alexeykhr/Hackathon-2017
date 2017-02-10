@@ -21,7 +21,7 @@ class Web
             curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
         }
 
-        $result = json_decode( curl_exec($ch) );
+        $result = json_decode( curl_exec( $ch ) );
         curl_close($ch);
 
         return $result;

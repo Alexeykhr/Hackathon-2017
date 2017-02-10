@@ -1,15 +1,9 @@
 <?php
 
-require_once __DIR__ . '/classes/Web.php';
-require_once __DIR__ . '/classes/VK.php';
-require_once __DIR__ . '/classes/OVVA.php';
+require_once __DIR__ . '/config.php';
 
-$vk = new VK('', 139842925, '5.62');
-$photo = $vk->uploadImageOnServer('photo.jpg');
-$res = $vk->photosSaveWallPhoto($photo->server, $photo->photo, $photo->hash);
-$vk->wallPost('Test Photo', 'photo' . $res->response[0]->owner_id . '_' . $res->response[0]->id);
-
-die;
+$ovva = new OVVA();
+$ovva = $ovva->getTVProgramme('1plus1');
 ?>
 
 <!DOCTYPE html>
@@ -21,10 +15,10 @@ die;
 <body>
 
 <div class="container">
-    <h1>Телепрограмма на <?= $data->data->date; ?></h1>
+    <h1>Телепрограмма на <?= date('d.m.Y', strtotime($ovva->data->date)); ?></h1>
 
     <div class="items">
-        <?php foreach ($data->data->programs as $program) : ?>
+        <?php foreach ($ovva->data->programs as $program) : ?>
         <div class="item">
             <img src="<?= $program->image->preview; ?>" alt="<?= $program->title; ?>">
             <?= $program->title . ' ' . $program->subtitle; ?>
